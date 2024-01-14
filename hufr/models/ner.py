@@ -35,10 +35,11 @@ class TokenClassificationTransformer(nn.Module):
     def device(self):
         return next(self.parameters()).device
     
-    def from_pretrained(self, model_path):
-        self.model = AutoModelForTokenClassification.from_pretrained(model_path)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-
+    @classmethod
+    def from_pretrained(cls, model_path):
+        model = cls(model=model_path, tokenizer=model_path)
+        return model
+    
     def predict(self, texts: List[str]) -> List[float]:
         """Predicts the label for each text in the list.
 
