@@ -29,8 +29,6 @@ jobs:
           python -m pip install pytest
           python -m pip install poetry
           poetry install
-          poetry export -f requirements.txt -o requirements.txt --without-hashes
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
         run: |
-          pytest -vxrs tests/
+          poetry run pytest -vxrs tests/
