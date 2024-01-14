@@ -1,2 +1,6 @@
 # hufr
-Redact Text with HuggingFace Models
+This repository contains a Python wrapper for HuggingFace token classification models to help redact personal identifiable information from free text.
+
+# Installation
+
+# Usage
