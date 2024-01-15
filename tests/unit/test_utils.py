@@ -2,6 +2,7 @@ import torch
 
 from hufr.utils import argmax_with_threshold
 
+
 def test_argmax_with_threshold():
     """Test that argmax along specific tensor dimension is working with a threshold"""
     # Test case 1

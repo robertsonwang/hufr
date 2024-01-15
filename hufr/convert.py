@@ -28,7 +28,6 @@ def convert_token_preds(
         If `skip_punc` is True, it skips punctuation tokens when aggregating predictions.
     """
     labels = []
-
     for i, label in enumerate(preds):
         word_ids = tokenized_inputs.word_ids(
             batch_index=i
@@ -42,10 +41,10 @@ def convert_token_preds(
             )
             if word_idx is None:
                 continue
-            elif (
+            if (
                 word_idx != previous_word_idx and not skip_punc
             ):  # Only label the first token of a given word.
-                label_tags.append(label[k])
+                label_tags.append(label[k].split("-")[-1])
             elif (
                 word_idx != previous_word_idx
                 and skip_punc

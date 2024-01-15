@@ -115,7 +115,7 @@ class TokenClassificationTransformer(nn.Module):
             for pred in predictions.tolist()
         ]
         predictions = convert_token_preds(
-            inputs, predictions, tokenizer=self.tokenizer, skip_punc=True
+            inputs, predictions, tokenizer=self.tokenizer
         )
         if isinstance(texts, str):
             return predictions[0]

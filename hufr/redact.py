@@ -1,3 +1,5 @@
+import string
+
 from typing import Union
 from hufr.models.ner import TokenClassificationTransformer
 from hufr.constants import DEFAULT_REDACTION_MAP, DEFAULT_MODEL
@@ -36,8 +38,13 @@ def redact_text(
     text_lines = text.split()
     redacted_text_lines = []
     if any(pred in redaction_map for pred in predictions):
+        # Adjustment redaction for punctuation on the right
         for pred, line in zip(predictions, text_lines):
-            redacted_text_lines.append(redaction_map.get(pred, line))
+            is_last_char_punc = line[-1] in string.punctuation
+            if is_last_char_punc and pred in redaction_map:
+                redacted_text_lines.append(redaction_map.get(pred, line) + line[-1])
+            else:
+                redacted_text_lines.append(redaction_map.get(pred, line))
     else:
         redacted_text_lines = text_lines
     if return_preds:
