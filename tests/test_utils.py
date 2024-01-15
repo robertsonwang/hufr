@@ -1,8 +1,9 @@
 import torch
-import pytest
-from hufr.utils import argmax_with_threshold 
+
+from hufr.utils import argmax_with_threshold
 
 def test_argmax_with_threshold():
+    """Test that argmax along specific tensor dimension is working with a threshold"""
     # Test case 1
     tensor1 = torch.tensor([[1, 2, 3], [4, 5, 6]])
     threshold1 = 4
