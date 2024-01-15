@@ -1,9 +1,9 @@
-# 🤗 Redactions 
+# 🤗 Redactions
 
-HuggingFace Redactions (`hufr`) is a Python wrapper for HuggingFace token classification models to help redact personal identifiable information from free text. This project is not associated with the official HuggingFace organization, just a fun side project for this individual contributor. 
+HuggingFace Redactions (`hufr`) is a Python wrapper for HuggingFace token classification models to streamline the redaction of personal identifiable information from free text. This project is not associated with the official HuggingFace organization, just a fun side project for this individual contributor.
 
 # Installation
-To install this package, first clone the repository and then run `pip install hufr/`
+To install this package, run `pip install hufr`
 
 # Usage
 
@@ -41,4 +41,24 @@ text = "Hello! My name is Rob"
 redact_text(text)
 ```
 
-See the `constants.py` module for default model paths and default entity to redaction mapping.
+To get the predicted entity for each word in the original text:
+
+```python
+from hufr.redact import redact_text
+
+text = "Hello! My name is Rob"
+redact_text(text, return_preds=True)
+```
+
+This will output:
+`"Hello! My name is <PERSON>", ['O', 'O', 'O', 'O', 'PER']`
+
+By default, personal identifiable information is predicted by the [dslim/bert-base-NER](https://huggingface.co/dslim/bert-base-NER) model where entities are mapped to redactions using the following mapping table:
+
+
+```python
+'PER': '<PERSON>',
+'MIS': '<OTHER>',
+'ORG': '<ORGANIZATION>',
+'LOC': '<LOCATION>'
+```
