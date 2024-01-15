@@ -1,6 +1,6 @@
+from typing import Union
 from hufr.models.ner import TokenClassificationTransformer
 from hufr.constants import DEFAULT_REDACTION_MAP, DEFAULT_MODEL
-from typing import Union
 
 def redact_text(
     text: str,
@@ -9,7 +9,7 @@ def redact_text(
     return_preds: bool = False,
 ):
     """
-    Redacts sensitive information in the given text using a pre-trained Token Classification model.
+    Redacts sensitive information in the given text using a pre-trained HuggingFace Token Classification model.
 
     Args:
         text (str): The input text to be redacted.

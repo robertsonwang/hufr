@@ -14,6 +14,29 @@ class TokenClassificationTransformer(nn.Module):
         device="cpu",
         threshold=0.9,
     ):
+        """
+        Wrapper for HuggingFace Token Classification models to predict entiteis in free text. This class is
+        designed for token classification tasks using transformers' token classification models. It includes
+        methods for loading a pre-trained model, predicting labels for input texts, and handling token-to-word mapping.
+
+        Args:
+            model (Union[Callable, str, None]): Pre-trained model or path to model weights (local or remote).
+                If None, the model will not be loaded.
+            tokenizer (Union[Callable, str, None]): Tokenizer for the model or path to tokenizer config (local or remote)
+                If None, the tokenizer will not be loaded.
+            device (str, optional): Device to move the model to. Defaults to "cpu".
+            threshold (float, optional): Threshold for filtering predicted labels. Defaults to 0.9.
+
+        Attributes:
+            model: The pre-trained token classification model.
+            tokenizer: The tokenizer associated with the model.
+            device (str): The device on which the model is loaded.
+            threshold (float): The threshold value for filtering predicted labels.
+
+        Methods:
+            from_pretrained(cls, model_path): Instantiate the class with a pre-trained model path.
+            predict(self, texts: List[str]) -> List[List[str]]: Predicts labels for input texts.
+        """
         super().__init__()
         if isinstance(model, str):
             self.model = AutoModelForTokenClassification.from_pretrained(model)
@@ -33,13 +56,28 @@ class TokenClassificationTransformer(nn.Module):
 
     @property
     def device(self):
+        """
+        Property to get the device on which the model weights are loaded.
+
+        Returns:
+            str: The device on which the model weights are loaded.
+        """
         return next(self.parameters()).device
-    
+
     @classmethod
     def from_pretrained(cls, model_path):
+        """
+        Instantiate the class with a pre-trained model path.
+
+        Args:
+            model_path (str): Path or identifier of the pre-trained model.
+
+        Returns:
+            TokenClassificationTransformer: An instance of the class with the pre-trained model.
+        """
         model = cls(model=model_path, tokenizer=model_path)
         return model
-    
+
     def predict(self, texts: List[str]) -> List[float]:
         """Predicts the label for each text in the list.
 
