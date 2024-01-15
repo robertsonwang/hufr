@@ -11,6 +11,8 @@ python = "^3.9"
 transformers = "^4.36.2"
 torch = "^2.1.2"
 
+[tool.poetry.dev-dependencies]
+pytest = "^6.1"
 
 [build-system]
 requires = ["poetry-core"]
