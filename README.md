@@ -30,7 +30,7 @@ redact_text(
 
 This will output:
 
-`"Hello! My name is \<PERSON\>"'
+`"Hello! My name is \<PERSON\>"`
 
 If you don't want to instantiate a model and supply a specific token classification model, then you can simply rely on the repository defaults for a quick and simple redaction:
 
