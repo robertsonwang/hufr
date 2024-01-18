@@ -1,6 +1,6 @@
 # 🤗 Redactions
 
-HuggingFace Redactions (`hufr`) redacts personal identifiable information from text using pretrained language models from the HuggingFace model repository. This packge wraps token classification models to streamline the redaction of personal identifiable information from free text. This project is not associated with the official HuggingFace organization, just a fun side project for this individual contributor.
+[HuggingFace Redactions](https://github.com/robertsonwang/hufr) (`hufr`) redacts personal identifiable information from text using pretrained language models from the HuggingFace model repository. This packge wraps token classification models to streamline the redaction of personal identifiable information from free text. This project is not associated with the official HuggingFace organization, just a fun side project for this individual contributor.
 
 # Installation
 
