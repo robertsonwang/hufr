@@ -1,10 +1,11 @@
 import torch.nn as nn
 import torch
 
-from hufr.utils import argmax_with_threshold
+from hufr.models.utils import argmax_with_threshold
 from hufr.convert import convert_token_preds
 from typing import Callable, List, Union
 from transformers import AutoTokenizer, AutoModelForTokenClassification
+
 
 class TokenClassificationTransformer(nn.Module):
     def __init__(
@@ -90,7 +91,9 @@ class TokenClassificationTransformer(nn.Module):
         """
         # TO DO: Add offset to handle long input sequences
         if self.model is None:
-            raise AttributeError("Please instantiate a model using the from_pretrained method.")
+            raise AttributeError(
+                "Please instantiate a model using the from_pretrained method."
+            )
         inputs = self.tokenizer(
             texts,
             return_tensors="pt",
@@ -114,9 +117,7 @@ class TokenClassificationTransformer(nn.Module):
             [self.model.config.id2label[x] for x in pred]
             for pred in predictions.tolist()
         ]
-        predictions = convert_token_preds(
-            inputs, predictions, tokenizer=self.tokenizer
-        )
+        predictions = convert_token_preds(inputs, predictions, tokenizer=self.tokenizer)
         if isinstance(texts, str):
             return predictions[0]
 

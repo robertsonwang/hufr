@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install poetry
           poetry run pip install pytest
-          poetry install
+          poetry install --extras cpu
       - name: Test with pytest
         run: |
           poetry run pytest -vxrs tests/
