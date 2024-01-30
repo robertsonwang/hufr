@@ -3,6 +3,7 @@ import string
 from typing import Callable
 from transformers.tokenization_utils_base import BatchEncoding
 
+
 def convert_token_preds(
     tokenized_inputs: BatchEncoding,
     preds: list,

@@ -1,6 +1,6 @@
 import torch
 
-from hufr.utils import argmax_with_threshold
+from hufr.models.utils import argmax_with_threshold
 
 
 def test_argmax_with_threshold():
