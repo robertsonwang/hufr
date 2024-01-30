@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-transformers = "^4.36.2"
+transformers = "~4.36.2"
 torch = "^2.1.2"
 # If both ONNX versions are installed, things will not work.
 onnxruntime = { version = "^1.13.1", optional = true, markers="extra!='gpu'"}
