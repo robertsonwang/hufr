@@ -2,20 +2,20 @@ import onnxruntime
 import numpy as np
 import torch
 
-from hufr.utils import argmax_with_threshold
+from hufr.models.utils import argmax_with_threshold
 from typing import Callable, List, Union
 from transformers import AutoTokenizer
 from hufr.convert import convert_token_preds
 from transformers.configuration_utils import PretrainedConfig
 
 
-def softmax(x):
+def softmax(x, axis=2):
     # Ensure numerical stability by subtracting the maximum value
     # along the second dimension before applying the softmax
-    e_x = np.exp(x - np.max(x, axis=2, keepdims=True))
+    e_x = np.exp(x - np.max(x, axis=axis, keepdims=True))
 
     # Calculate softmax along the second dimension
-    return e_x / np.sum(e_x, axis=2, keepdims=True)
+    return e_x / np.sum(e_x, axis=axis, keepdims=True)
 
 
 class TokenClassificationTransformerONNX:

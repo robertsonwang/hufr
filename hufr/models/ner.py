@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 
-from hufr.utils import argmax_with_threshold
+from hufr.models.utils import argmax_with_threshold
 from hufr.convert import convert_token_preds
 from typing import Callable, List, Union
 from transformers import AutoTokenizer, AutoModelForTokenClassification
