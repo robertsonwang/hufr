@@ -5,10 +5,9 @@ description = "Redact Text with HuggingFace Models"
 authors = ["Robertson Wang <robertsonwang@gmail.com>"]
 license = "Apache 2.0"
 readme = "README.md"
-
-[project.urls]
-Homepage = "https://github.com/robertsonwang/hufr"
-Issues = "https://github.com/robertsonwang/hufr/issues"
+homepage = "https://github.com/robertsonwang/hufr"
+repository = "https://github.com/robertsonwang/hufr"
+keywords = ["huggingface", "pii", "ner", "ONNX", "NLP", "redactions"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
